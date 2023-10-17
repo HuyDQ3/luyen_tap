@@ -61,3 +61,20 @@ void errorHandling() {
     print('main() finished handling ${e.runtimeType}.');
   }
 }
+
+void time() {
+  DateTime dateTime = DateTime.now();
+  String year = dateTime.year.toString();
+  String month =
+      dateTime.month < 10 ? '0${dateTime.month}' : dateTime.month.toString();
+  String day = dateTime.day < 10 ? '0${dateTime.day}' : dateTime.day.toString();
+  String hour =
+      dateTime.hour < 10 ? '0${dateTime.hour}' : dateTime.hour.toString();
+  String minute =
+      dateTime.minute < 10 ? '0${dateTime.minute}' : dateTime.minute.toString();
+  String second =
+      dateTime.second < 10 ? '0${dateTime.second}' : dateTime.second.toString();
+
+  String formatedTime = '${year}-${month}-${day}T${hour}:${minute}:${second}Z';
+  print(formatedTime);
+}
