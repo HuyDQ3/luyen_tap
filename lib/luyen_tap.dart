@@ -1,3 +1,5 @@
+import '';
+
 int calculate() {
   return 6 * 7;
 }
@@ -63,18 +65,31 @@ void errorHandling() {
 }
 
 void time() {
-  DateTime dateTime = DateTime.now();
-  String year = dateTime.year.toString();
-  String month =
-      dateTime.month < 10 ? '0${dateTime.month}' : dateTime.month.toString();
-  String day = dateTime.day < 10 ? '0${dateTime.day}' : dateTime.day.toString();
-  String hour =
-      dateTime.hour < 10 ? '0${dateTime.hour}' : dateTime.hour.toString();
-  String minute =
-      dateTime.minute < 10 ? '0${dateTime.minute}' : dateTime.minute.toString();
-  String second =
-      dateTime.second < 10 ? '0${dateTime.second}' : dateTime.second.toString();
+  // DateTime dateTime = DateTime.now();
+  // String year = dateTime.year.toString();
+  // String month =
+  //     dateTime.month < 10 ? '0${dateTime.month}' : dateTime.month.toString();
+  // String day = dateTime.day < 10 ? '0${dateTime.day}' : dateTime.day.toString();
+  // String hour =
+  //     dateTime.hour < 10 ? '0${dateTime.hour}' : dateTime.hour.toString();
+  // String minute =
+  //     dateTime.minute < 10 ? '0${dateTime.minute}' : dateTime.minute.toString();
+  // String second =
+  //     dateTime.second < 10 ? '0${dateTime.second}' : dateTime.second.toString();
 
-  String formatedTime = '${year}-${month}-${day}T${hour}:${minute}:${second}Z';
-  print(formatedTime);
+  // String formatedTime = '${year}-${month}-${day}T${hour}:${minute}:${second}Z';
+  // print(formatedTime);
+
+  String timeString = '2023-01-09T05:04:05Z';
+  print(DateTime.parse(timeString));
+
+  // print(DateTime.now().toIso8601String());
+  // print(DateTime.now().toLocal());
+  // print(DateTime.now().toUtc());
+}
+
+void listGenerate() {
+  final growableList =
+      List<int>.generate(0, (int index) => index * index, growable: true);
+  print(growableList); // [0, 1, 4]
 }
