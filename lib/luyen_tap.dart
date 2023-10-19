@@ -80,7 +80,9 @@ void time() {
   // String formatedTime = '${year}-${month}-${day}T${hour}:${minute}:${second}Z';
   // print(formatedTime);
 
-  String timeString = '2023-01-09T05:04:05Z';
+  String timeString = '05:04:05';
+  DateTime dateTime = DateTime.parse(timeString);
+
   print(DateTime.parse(timeString));
 
   // print(DateTime.now().toIso8601String());
@@ -89,7 +91,15 @@ void time() {
 }
 
 void listGenerate() {
-  final growableList =
-      List<int>.generate(0, (int index) => index * index, growable: true);
+  List<int> a = [1, 2];
+  final growableList = List<int>.generate(
+      a.length, (int index) => index * index,
+      growable: true);
   print(growableList); // [0, 1, 4]
+  print('\$numberDecimal');
+}
+
+void stringTest() {
+  String a = 'aaa/bbb/ccc/';
+  print(a.substring(0, a.length - 1));
 }
