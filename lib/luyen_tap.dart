@@ -1,4 +1,4 @@
-import '';
+import 'package:collection/collection.dart';
 
 int calculate() {
   return 6 * 7;
@@ -80,20 +80,33 @@ void time() {
   // String formatedTime = '${year}-${month}-${day}T${hour}:${minute}:${second}Z';
   // print(formatedTime);
 
-  String timeString = '05:04:05';
-  DateTime dateTime = DateTime.parse(timeString);
+  // String timeString = '05:04:05';
+  // DateTime dateTime = DateTime.parse(timeString);
 
-  print(DateTime.parse(timeString));
+  // print(DateTime.parse(timeString));
 
   // print(DateTime.now().toIso8601String());
   // print(DateTime.now().toLocal());
   // print(DateTime.now().toUtc());
+  DateTime startDate = DateTime(2023, 10, 15);
+  DateTime endDate = DateTime(2023, 10, 26);
+  DateTime startTime = DateTime(2023, 10, 22);
+  DateTime endTime = DateTime(2023, 10, 27);
+  if (((startTime.isAfter(startDate) ||
+              startTime.isAtSameMomentAs(startDate)) &&
+          startTime.isBefore(endDate)) &&
+      ((endTime.isBefore(endDate) || endTime.isAtSameMomentAs(endDate)) &&
+          endTime.isAfter(startDate))) {
+    print('true');
+  } else {
+    print('false');
+  }
 }
 
 void listGenerate() {
-  List<int> a = [1, 2];
+  List<int>? a;
   final growableList = List<int>.generate(
-      a.length, (int index) => index * index,
+      a?.length ?? 0, (int index) => index * index,
       growable: true);
   print(growableList); // [0, 1, 4]
   print('\$numberDecimal');
@@ -102,4 +115,82 @@ void listGenerate() {
 void stringTest() {
   String a = 'aaa/bbb/ccc/';
   print(a.substring(0, a.length - 1));
+}
+
+void macAddressFormat() {
+  String macAddress = '0:6:08:1:03:9';
+  List<String> list = macAddress.split(':');
+  for (int i = 0; i < list.length; i++) {
+    if (list[i].length == 1) {
+      list[i] = '0${list[i]}';
+    }
+  }
+  String macAddress2 = list.join(":");
+  print(macAddress);
+  print(macAddress2);
+}
+
+void keyFromValue() {
+  Map currencies = {"01": "USD", "17": "GBP", "33": "EUR"};
+
+  MapEntry entry =
+      currencies.entries.firstWhere((element) => element.value == 'GBP');
+
+  Map<String, String> devices = {
+    'all': 'tat ca',
+    'web': 'web356',
+    'app': 'app365',
+    'qr': 'qr365',
+  };
+
+  List<String>? deviceValue = ['tat ca', 'wrb365'];
+  // String key =
+  //     currencies.entries.firstWhere((element) => element.value == 'GBP').key;
+  // List<String?> deviceNames = (deviceValue == null || deviceValue.isEmpty)
+  //     ? []
+  //     : List.generate(
+  //         deviceValue.length,
+  //         (index) => devices.keys
+  //             .firstWhere((element) => devices[element] == deviceValue[index]));
+
+  Map curr = {"01": "USD", "17": "GBP", "33": "EUR"};
+  var usdKey =
+      curr.keys.firstWhere((k) => curr[k] == 'USD', orElse: () => null);
+  List<String>? values = ['USD', 'GBP', 'AAA'];
+  List<String>? keys = [];
+  for (int i = 0; i < values.length; i++) {
+    if (curr.keys.firstWhere((k) => curr[k] == values[i], orElse: () => null) !=
+        null) {
+      keys.add(curr.keys
+          .firstWhere((k) => curr[k] == values[i], orElse: () => null));
+    }
+  }
+  print(keys);
+  // if (entry != null) {
+  //   print('key = ${entry.key}');
+  //   print('value = ${entry.value}');
+
+  // }
+
+  // print('key = $key');
+  // print(deviceNames);
+}
+
+void testListEquals() {
+  List<String> a = ['a', 'b', 'v'];
+  List<String> b = ['a', 'v', 'b'];
+  List<String> c = ['q', 'w', 'r'];
+  Function eq = ListEquality().equals;
+  Function deepEq = DeepCollectionEquality().equals;
+  Function deepEqUnordered = DeepCollectionEquality.unordered().equals;
+  print('a == b is ${a == b}');
+  print('a == c is ${a == c}');
+  print('a using ListEquality with b is ${eq(a, b)}');
+  print('a using ListEquality with c is ${eq(a, c)}');
+  print('a using DeepCollectionEquality with b is ${deepEq(a, b)}');
+  print('a using DeepCollectionEquality with c is ${deepEq(a, c)}');
+  print(
+      'a using DeepCollectionEquality.unordered with b is ${deepEqUnordered(a, b)}');
+  print(
+      'a using DeepCollectionEquality.unordered with c is ${deepEqUnordered(a, c)}');
 }
