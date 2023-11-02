@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+// import 'package:flutter/foundation.dart';
 
 int calculate() {
   return 6 * 7;
@@ -193,4 +194,105 @@ void testListEquals() {
       'a using DeepCollectionEquality.unordered with b is ${deepEqUnordered(a, b)}');
   print(
       'a using DeepCollectionEquality.unordered with c is ${deepEqUnordered(a, c)}');
+  // print('a using listEquals with b is ${listEquals(a, b)}');
+  // print('a using listEquals with c is ${listEquals(a, c)}');
+}
+
+void filter() {
+  String removeDiacritics(String input) {
+    final diacriticCharacters = {
+      'a': [
+        'á',
+        'à',
+        'ả',
+        'ã',
+        'ạ',
+        'ă',
+        'ắ',
+        'ằ',
+        'ẳ',
+        'ẵ',
+        'ặ',
+        'â',
+        'ấ',
+        'ầ',
+        'ẩ',
+        'ẫ',
+        'ậ'
+      ],
+      'e': ['é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ'],
+      'i': ['í', 'ì', 'ỉ', 'ĩ', 'ị'],
+      'o': [
+        'ó',
+        'ò',
+        'ỏ',
+        'õ',
+        'ọ',
+        'ô',
+        'ố',
+        'ồ',
+        'ổ',
+        'ỗ',
+        'ộ',
+        'ơ',
+        'ớ',
+        'ờ',
+        'ở',
+        'ỡ',
+        'ợ'
+      ],
+      'u': ['ú', 'ù', 'ủ', 'ũ', 'ụ', 'ư', 'ứ', 'ừ', 'ử', 'ữ', 'ự'],
+      'y': ['ý', 'ỳ', 'ỷ', 'ỹ', 'ỵ'],
+      'd': ['đ']
+    };
+
+    for (var key in diacriticCharacters.keys) {
+      for (var char in diacriticCharacters[key]!) {
+        input = input.replaceAll(char, key);
+      }
+    }
+
+    return input;
+  }
+
+  String a = 'chitiet';
+  String b = 'chi tiết 123';
+  Map<String, String> devices = {
+    // 'all': StringConst.timekeeping_device_choice_all,
+    'web': 'web365',
+    'app': 'app365',
+    'qr': 'ar123',
+  };
+
+  if ((a.trim().toLowerCase().contains(b.trim().toLowerCase() ?? '') ||
+          // removeDiacritics(a.trim().toLowerCase())
+          //     .contains(removeDiacritics(((a.trim() ?? '').toLowerCase()))) ||
+          removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()).contains(
+              removeDiacritics(
+                  ((b.trim() ?? '').replaceAll(' ', '').toLowerCase())))
+      // ||
+      // a.detailId == detail.detail!.detailId
+      )) {
+    print('true');
+    print(removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()));
+    print(removeDiacritics(b.trim().replaceAll(' ', '') ?? '').toLowerCase());
+  } else {
+    print('false');
+    print(removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()));
+    print(removeDiacritics(b.trim().replaceAll(' ', '') ?? '').toLowerCase());
+  }
+
+  // if (removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()).contains(
+  //         removeDiacritics(b.trim().replaceAll(' ', '').toLowerCase())) ||
+  //     removeDiacritics(devices.values
+  //             .firstWhere((value) => value.contains(devices[a] ?? ''))
+  //             .trim()
+  //             .replaceAll(' ', '')
+  //             .toLowerCase())
+  //         .contains(
+  //             removeDiacritics(b.trim().replaceAll(' ', '').toLowerCase()))) {
+  //   print("true");
+  // } else {
+  //   print('false');
+  // }
 }
