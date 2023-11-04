@@ -89,19 +89,27 @@ void time() {
   // print(DateTime.now().toIso8601String());
   // print(DateTime.now().toLocal());
   // print(DateTime.now().toUtc());
-  DateTime startDate = DateTime(2023, 10, 15);
-  DateTime endDate = DateTime(2023, 10, 26);
-  DateTime startTime = DateTime(2023, 10, 22);
-  DateTime endTime = DateTime(2023, 10, 27);
-  if (((startTime.isAfter(startDate) ||
-              startTime.isAtSameMomentAs(startDate)) &&
-          startTime.isBefore(endDate)) &&
-      ((endTime.isBefore(endDate) || endTime.isAtSameMomentAs(endDate)) &&
-          endTime.isAfter(startDate))) {
-    print('true');
-  } else {
-    print('false');
-  }
+  // DateTime startDate = DateTime(2023, 10, 15);
+  // DateTime endDate = DateTime(2023, 10, 26);
+  // DateTime startTime = DateTime(2023, 10, 22);
+  // DateTime endTime = DateTime(2023, 10, 27);
+  // if (((startTime.isAfter(startDate) ||
+  //             startTime.isAtSameMomentAs(startDate)) &&
+  //         startTime.isBefore(endDate)) &&
+  //     ((endTime.isBefore(endDate) || endTime.isAtSameMomentAs(endDate)) &&
+  //         endTime.isAfter(startDate))) {
+  //   print('true');
+  // } else {
+  //   print('false');
+  // }
+
+  int timestamp = 1699068817;
+  print(
+    DateTime.fromMillisecondsSinceEpoch(timestamp * 1000),
+  );
+  print(DateTime.fromMillisecondsSinceEpoch(timestamp * 1000)
+          .millisecondsSinceEpoch ~/
+      1000);
 }
 
 void listGenerate() {

@@ -10,5 +10,5 @@ void main(List<String> arguments) {
   // print('left = ${r.left}, top = ${r.top}');
   // r.left = 6.9;
   // print('left = ${r.left}, top = ${r.top}');
-  luyen_tap.filter();
+  luyen_tap.time();
 }
