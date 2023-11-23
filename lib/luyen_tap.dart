@@ -304,3 +304,14 @@ void filter() {
   //   print('false');
   // }
 }
+
+void testMap() {
+  Map<int, String> map = {
+    1: 'a',
+    2: 'b',
+    3: 'c',
+  };
+  print(map[1]);
+  print(map[0] ?? "nullllllllllllllllllllllllll");
+  print(map[0]);
+}
