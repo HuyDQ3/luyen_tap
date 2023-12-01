@@ -315,3 +315,18 @@ void testMap() {
   print(map[0] ?? "nullllllllllllllllllllllllll");
   print(map[0]);
 }
+
+void testCast() {
+  dynamic a = 1;
+  print("cast to double: a is ${(a as int).runtimeType}");
+}
+
+void testSet() {
+  List<int> list = [1, 2, 1, 3, 4, 2, 3, 4];
+  Set<int> set = Set.from(list);
+  print(set);
+  print(set.toString());
+  List<int> list2 = set.toList();
+  print(list2);
+  print(list2.toString());
+}
