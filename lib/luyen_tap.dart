@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 // import 'package:flutter/foundation.dart';
 
@@ -317,8 +319,20 @@ void testMap() {
 }
 
 void testCast() {
-  dynamic a = 1;
-  print("cast to double: a is ${(a as int).runtimeType}");
+  // dynamic a = 1;
+  // print("cast to double: a is ${(a as int).runtimeType}");
+  List a = [1, '2', 3, '4', 5.5];
+  List<String> b =
+      List<String>.generate(a.length, (index) => a[index].toString());
+  print('a = ${a.toString()}');
+  print('b = ${b.toString()}');
+  List r = [Rectangle(1, 2, 3, 2), Rectangle(2, 2, 2, 2)];
+  List<Rectangle> rr =
+      List<Rectangle>.generate(r.length, (index) => r[index] as Rectangle);
+  print('r = ${r.toString()}');
+  print('r = ${r.runtimeType}');
+  print('rr = ${rr.toString()}');
+  print('rr = ${rr.runtimeType}');
 }
 
 void testSet() {
@@ -326,7 +340,7 @@ void testSet() {
   Set<int> set = Set.from(list);
   print(set);
   print(set.toString());
-  List<int> list2 = set.toList();
+  List<int> list2 = Set<int>.from(list).toList();
   print(list2);
   print(list2.toString());
 }
