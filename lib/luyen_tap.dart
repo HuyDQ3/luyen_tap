@@ -344,3 +344,14 @@ void testSet() {
   print(list2);
   print(list2.toString());
 }
+
+void testEmptyList() {
+  List<int> list = [];
+  print(list.first);
+}
+
+void testListFunction() {
+  List<int> list = [2, 4, 6];
+  print(list.where((element) => element.isOdd).toString());
+  print(list.where((element) => element.isEven).toString());
+}
