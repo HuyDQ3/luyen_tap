@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
+import 'package:luyen_tap/auto_message.dart';
 // import 'package:flutter/foundation.dart';
 
 int calculate() {
@@ -354,4 +356,28 @@ void testListFunction() {
   List<int> list = [2, 4, 6];
   print(list.where((element) => element.isOdd).toString());
   print(list.where((element) => element.isEven).toString());
+}
+
+void testConvertFromStringToJSON() {
+  String s =
+      "{\"content\": \"a\rb\nc\td\", \"options\": [\"\na\", \"b\n\", \"\nc\n\"]}";
+  String string2Raw(String x) => '\r$x';
+  s = s.replaceAll('\n', r'\n');
+  s = s.replaceAll('\r', r'\r');
+  s = s.replaceAll('\t', r'\t');
+  Map<String, String> sps = {
+    "\n": r"\n",
+    "\r": r"\r",
+    "\t": r"\t",
+  };
+  for (var key in sps.keys) {
+    s.replaceAll(key, sps[key]!);
+  }
+  // s.replaceAll(RegExp(r"\\n"), "");
+  AutoMessage autoMessage = AutoMessage.fromJson(s);
+  print(autoMessage.toJson());
+  print(autoMessage.content.toString());
+  for (var option in autoMessage.options) {
+    print(option);
+  }
 }
