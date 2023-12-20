@@ -360,7 +360,7 @@ void testListFunction() {
 
 void testConvertFromStringToJSON() {
   String s =
-      "{\"content\": \"a\rb\nc\td\", \"options\": [\"\na\", \"b\n\", \"\nc\n\"]}";
+      "{\"content\": \"a\rb\n\u{1f60e}c\t\u00a9d\", \"options\": [\"c\na\u{1f60e}\", \"\u{1f60e}b\n\", \"z\nc\u{1f60e}\n\"]}";
   String string2Raw(String x) => '\r$x';
   s = s.replaceAll('\n', r'\n');
   s = s.replaceAll('\r', r'\r');
