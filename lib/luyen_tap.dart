@@ -127,7 +127,13 @@ void listGenerate() {
 
 void stringTest() {
   String a = 'aaa/bbb/ccc/';
-  print(a.substring(0, a.length - 1));
+  // print(a.substring(0, a.length - 1));
+  int max = 50;
+  if (a.length < max) {
+    print(a);
+  } else {
+    print(a.substring(0, max));
+  }
 }
 
 void macAddressFormat() {
@@ -348,20 +354,45 @@ void testSet() {
 }
 
 void testEmptyList() {
-  List<int> list = [];
-  print(list.first);
+  List<int> list = [1, 2, 3];
+  // print(list.first);
+  print(List.from(list.where((element) => element > 5)).toString());
 }
 
 void testListFunction() {
-  List<int> list = [2, 4, 6];
-  print(list.where((element) => element.isOdd).toString());
-  print(list.where((element) => element.isEven).toString());
+  // List<int> list = [2, 4, 6];
+  // print(list.where((element) => element.isOdd).toString());
+  // print(list.where((element) => element.isEven).toString());
+  List<String> options = [
+    'Tất cả',
+    'b',
+    'Tất cả',
+    'd',
+    'a',
+    'Chỉ có trong danh sách',
+    'a'
+  ];
+  List<String> uniques = ['Tất cả', 'Chỉ có trong danh sách'];
+  print(options.toString());
+  int i = 0;
+  while (i >= 0) {
+    if (options.any(
+        (element) => uniques.any((unique) => element.compareTo(unique) == 0))) {
+      i = options.indexWhere(
+          (element) => uniques.any((unique) => element.compareTo(unique) == 0),
+          i);
+      options[i] = "${options[i]} *";
+    } else {
+      i = -1;
+    }
+  }
+  print(options.toString());
 }
 
 void testConvertFromStringToJSON() {
   String s =
-      "{\"content\": \"a\rb\n\u{1f60e}c\t\u00a9d\", \"options\": [\"c\na\u{1f60e}\", \"\u{1f60e}b\n\", \"z\nc\u{1f60e}\n\"]}";
-  String string2Raw(String x) => '\r$x';
+      "{\"content\": \"😎a\rb\n\u{1f60e}😎c\t\u00a9d\", \"options\": [\"©😎c\na\u{1f60e}\", \"©©\u{1f60e}b\n\", \"©z\nc\u{1f60e}\n©\"]}";
+  // String string2Raw(String x) => '\r$x';
   s = s.replaceAll('\n', r'\n');
   s = s.replaceAll('\r', r'\r');
   s = s.replaceAll('\t', r'\t');
@@ -373,11 +404,48 @@ void testConvertFromStringToJSON() {
   for (var key in sps.keys) {
     s.replaceAll(key, sps[key]!);
   }
-  // s.replaceAll(RegExp(r"\\n"), "");
+  String regex = r'[^\s\w]';
+
   AutoMessage autoMessage = AutoMessage.fromJson(s);
-  print(autoMessage.toJson());
-  print(autoMessage.content.toString());
+  // print(autoMessage.toJson());
+  // print(autoMessage.content.toString());
   for (var option in autoMessage.options) {
-    print(option);
+    print(option.replaceAll(RegExp(regex, unicode: true), ""));
   }
+  print(autoMessage.options.toString());
+}
+
+void testStringCompare() {
+  String a = "ahihi";
+  String b = "ahihii";
+  String c = "ahihi";
+  print("a == c is ${a == c}");
+  print("a.compareTo(c) = ${a.compareTo(c)}");
+  print("a == b is ${a == b}");
+  print("a.compareTo(b) = ${a.compareTo(b)}");
+}
+
+void testGetSubString() {
+  // String regex = r'[^\s\w]';
+  // String s = "abccccccccc\r\n😎😎c\td";
+  // print("s has symbol: ${s.contains(RegExp(regex, unicode: true))}");
+  // int i = 0;
+  // while (i < s.length) {
+  //   if (s[i].contains(RegExp(regex, unicode: true))) {
+  //     print("first symbol is: ${s[i]}");
+  //     break;
+  //   }
+  //   i++;
+  // }
+  // print("substring: ${s.substring(0, i)}");
+  // print("substring: ${s.substring(0, i)}");
+  // print("substring: ${s.substring(0, i)}");
+
+  String value = r'a\nb';
+  print(value); // prints raw string
+  value = jsonDecode(
+      r'{ "data":"' + value + r'"}')['data']; // converted to escaped string
+  print(value); // prints a & b in different lines
+  String value2 = r'value'; // converted to escaped string
+  print(value2); // prints a & b in different lines
 }
