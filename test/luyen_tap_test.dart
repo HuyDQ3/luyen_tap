@@ -20,4 +20,25 @@ void main() {
           powerEachItemInList([0, 4, 6, 8, 3, 5], 2), [0, 16, 36, 64, 9, 25]);
     },
   );
+
+  test(
+    'prime number in list',
+    () {
+      expect(primeNumber([1, 2, 3, 4]), [2, 3]);
+      expect(primeNumber([7, 2, 3]), [7, 2, 3]);
+      expect(primeNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [2, 3, 5, 7]);
+    },
+  );
+
+  test(
+    'item\'s frequency in list',
+    () {
+      expect(frequency([4, 2, 2, 5, 6, 5]), {2: 2, 4: 1, 5: 2, 6: 1});
+      expect(frequency([2, 2, 2, 1, 2]), {1: 1, 2: 4});
+      expect(
+          frequency(
+              [1, 2, 3, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2]),
+          {0: 1, 1: 15, 2: 4, 3: 1});
+    },
+  );
 }
