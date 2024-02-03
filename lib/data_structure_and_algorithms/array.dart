@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 // Nhập vào một số nguyên dương n, và n số nguyên lần

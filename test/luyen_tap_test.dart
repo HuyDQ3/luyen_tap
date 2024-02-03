@@ -1,7 +1,9 @@
 import 'package:luyen_tap/data_structure_and_algorithms/array.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/queue.dart';
 import 'package:test/test.dart';
 
 void main() {
+  // array
   test(
     'sum of list',
     () {
@@ -39,6 +41,36 @@ void main() {
           frequency(
               [1, 2, 3, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2]),
           {0: 1, 1: 15, 2: 4, 3: 1});
+    },
+  );
+  // ---------------------------------------------------------------------------
+
+  // queue
+  test(
+    'reverse string',
+    () {
+      expect(reverseString('codelearn'), 'nraeledoc');
+      expect(reverseString('abcd'), 'dcba');
+      expect(reverseString('123456789'), '987654321');
+    },
+  );
+
+  test(
+    'binary string',
+    () {
+      expect(binaryCode(13), "1101");
+      expect(binaryCode(123), "1111011");
+    },
+  );
+
+  test(
+    'decodeStringWithQueue',
+    () {
+      expect(decodeStringWithQueue("3[a"), null);
+      expect(decodeStringWithQueue("3[a]"), "aaa");
+      expect(decodeStringWithQueue("10[a]"), "aaaaaaaaaa");
+      expect(decodeStringWithQueue("3[ab]"), "ababab");
+      expect(decodeStringWithQueue("3[b2[ca]]"), "bcacabcacabcaca");
     },
   );
 }

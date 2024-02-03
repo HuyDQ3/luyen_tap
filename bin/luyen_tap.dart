@@ -1,3 +1,4 @@
+import 'package:luyen_tap/data_structure_and_algorithms/queue.dart';
 import 'package:luyen_tap/luyen_tap.dart' as luyen_tap;
 import 'package:luyen_tap/rectangle.dart';
 
@@ -10,5 +11,9 @@ void main(List<String> arguments) {
   // print('left = ${r.left}, top = ${r.top}');
   // r.left = 6.9;
   // print('left = ${r.left}, top = ${r.top}');
-  luyen_tap.stringTest();
+  // Future.delayed(
+  //   Duration(seconds: 0),
+  //   () async => await luyen_tap.testString(),
+  // );
+  print(decodeStringWithQueue("3[a]"));
 }

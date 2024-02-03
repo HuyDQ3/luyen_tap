@@ -275,29 +275,28 @@ void filter() {
 
   String a = 'chitiet';
   String b = 'chi tiết 123';
-  Map<String, String> devices = {
-    // 'all': StringConst.timekeeping_device_choice_all,
-    'web': 'web365',
-    'app': 'app365',
-    'qr': 'ar123',
-  };
+  // Map<String, String> devices = {
+  //   // 'all': StringConst.timekeeping_device_choice_all,
+  //   'web': 'web365',
+  //   'app': 'app365',
+  //   'qr': 'ar123',
+  // };
 
-  if ((a.trim().toLowerCase().contains(b.trim().toLowerCase() ?? '') ||
+  if ((a.trim().toLowerCase().contains(b.trim().toLowerCase()) ||
           // removeDiacritics(a.trim().toLowerCase())
           //     .contains(removeDiacritics(((a.trim() ?? '').toLowerCase()))) ||
           removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()).contains(
-              removeDiacritics(
-                  ((b.trim() ?? '').replaceAll(' ', '').toLowerCase())))
+              removeDiacritics(((b.trim()).replaceAll(' ', '').toLowerCase())))
       // ||
       // a.detailId == detail.detail!.detailId
       )) {
     print('true');
     print(removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()));
-    print(removeDiacritics(b.trim().replaceAll(' ', '') ?? '').toLowerCase());
+    print(removeDiacritics(b.trim().replaceAll(' ', '')).toLowerCase());
   } else {
     print('false');
     print(removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()));
-    print(removeDiacritics(b.trim().replaceAll(' ', '') ?? '').toLowerCase());
+    print(removeDiacritics(b.trim().replaceAll(' ', '')).toLowerCase());
   }
 
   // if (removeDiacritics(a.trim().replaceAll(' ', '').toLowerCase()).contains(
@@ -415,14 +414,56 @@ void testConvertFromStringToJSON() {
   print(autoMessage.options.toString());
 }
 
-void testStringCompare() {
+Future<void> testString() async {
   String a = "ahihi";
   String b = "ahihii";
   String c = "ahihi";
-  print("a == c is ${a == c}");
-  print("a.compareTo(c) = ${a.compareTo(c)}");
-  print("a == b is ${a == b}");
-  print("a.compareTo(b) = ${a.compareTo(b)}");
+  // print("a == c is ${a == c}");
+  // print("a.compareTo(c) = ${a.compareTo(c)}");
+  // print("a == b is ${a == b}");
+  // print("a.compareTo(b) = ${a.compareTo(b)}");
+  // int i = 5;
+  // int j = 5;
+  // while (i >= 0) {
+  //   Future.delayed(
+  //     Duration(seconds: i),
+  //     () async {
+  //       print(j);
+  //       String s = a * j;
+  //       print(s);
+  //       print(i);
+  //       print(a * 8);
+  //     },
+  //   );
+  //   i--;
+  //   // j--;
+  // }
+  int n = 2;
+  // for (int i = n; i >= 0; i--) {
+  //   Future.delayed(
+  //     Duration(seconds: i),
+  //     () {
+  //       print(a * i);
+  //     },
+  //   );
+  // }
+  int i = 0;
+  int j = 0;
+  // print(i);
+  while (i <= n) {
+    // print(i);
+    Future.delayed(
+      Duration(seconds: i),
+      () {
+        // print(i);
+        print(a * j);
+        // print(i);
+        j++;
+      },
+    );
+    // print(i);
+    i++;
+  }
 }
 
 void testGetSubString() {
@@ -448,4 +489,14 @@ void testGetSubString() {
   print(value); // prints a & b in different lines
   String value2 = r'value'; // converted to escaped string
   print(value2); // prints a & b in different lines
+}
+
+void testRune() {
+  int i = 0;
+  while (i < 12) {
+    print("number $i 's rune = ${i.toString().codeUnits}");
+    print(
+        "convert ${i.toString().codeUnits} to string: ${String.fromCharCodes(i.toString().codeUnits)}");
+    i++;
+  }
 }
