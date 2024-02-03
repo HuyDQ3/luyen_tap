@@ -1,6 +1,4 @@
-import 'package:luyen_tap/data_structure_and_algorithms/queue.dart';
-import 'package:luyen_tap/luyen_tap.dart' as luyen_tap;
-import 'package:luyen_tap/rectangle.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/queue/queue.dart';
 
 void main(List<String> arguments) {
   // luyen_tap.restElement();

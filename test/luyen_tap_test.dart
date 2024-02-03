@@ -1,5 +1,7 @@
-import 'package:luyen_tap/data_structure_and_algorithms/array.dart';
-import 'package:luyen_tap/data_structure_and_algorithms/queue.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/array/array.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/node/filter_field.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/node/node.dart';
+import 'package:luyen_tap/data_structure_and_algorithms/queue/queue.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -71,6 +73,38 @@ void main() {
       expect(decodeStringWithQueue("10[a]"), "aaaaaaaaaa");
       expect(decodeStringWithQueue("3[ab]"), "ababab");
       expect(decodeStringWithQueue("3[b2[ca]]"), "bcacabcacabcaca");
+    },
+  );
+  // ---------------------------------------------------------------------------
+
+  // node
+  test(
+    'getListFilterField',
+    () {
+      String name = "name";
+      String organization = "organization";
+      String position = "position";
+      String wifi = "wifi";
+      String location = "location";
+      String device = "device";
+      FilterField nameNode = FilterField(name: name);
+      FilterField organizationNode = FilterField(name: organization);
+      FilterField positionNode = FilterField(name: position);
+      FilterField wifiNode = FilterField(name: wifi, isFilter: false);
+      FilterField locationNode = FilterField(name: location);
+      FilterField deviceNode = FilterField(name: device, isFilter: false);
+      nameNode.next = organizationNode;
+      organizationNode.next = positionNode;
+      positionNode.next = wifiNode;
+      wifiNode.next = locationNode;
+      locationNode.next = deviceNode;
+
+      expect(getListFilterField(nameNode),
+          <FilterField>[organizationNode, positionNode, locationNode]);
+      expect(getListFilterField(organizationNode),
+          <FilterField>[positionNode, locationNode]);
+      expect(getListFilterField(wifiNode), <FilterField>[locationNode]);
+      expect(getListFilterField(deviceNode), <FilterField>[]);
     },
   );
 }
