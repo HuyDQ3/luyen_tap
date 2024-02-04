@@ -8,6 +8,6 @@ List<FilterField> getListFilterField(FilterField? filterField) {
     if (filterField != null && filterField.isFilter) {
       answers.add(filterField);
     }
-  } while (filterField != null && filterField.next != first);
+  } while (filterField?.next != null && filterField!.next != first);
   return answers;
 }
