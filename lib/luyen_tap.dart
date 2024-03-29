@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:luyen_tap/auto_message.dart';
 // import 'package:flutter/foundation.dart';
+import 'package:luyen_tap/custom_rectangle.dart';
 
 int calculate() {
   return 6 * 7;
@@ -395,22 +396,22 @@ void testConvertFromStringToJSON() {
   s = s.replaceAll('\n', r'\n');
   s = s.replaceAll('\r', r'\r');
   s = s.replaceAll('\t', r'\t');
-  Map<String, String> sps = {
-    "\n": r"\n",
-    "\r": r"\r",
-    "\t": r"\t",
-  };
-  for (var key in sps.keys) {
-    s.replaceAll(key, sps[key]!);
-  }
-  String regex = r'[^\s\w]';
+  // Map<String, String> sps = {
+  //   "\n": r"\n",
+  //   "\r": r"\r",
+  //   "\t": r"\t",
+  // };
+  // for (var key in sps.keys) {
+  //   s.replaceAll(key, sps[key]!);
+  // }
+  // String regex = r'[^\s\w]';
 
   AutoMessage autoMessage = AutoMessage.fromJson(s);
   // print(autoMessage.toJson());
   // print(autoMessage.content.toString());
-  for (var option in autoMessage.options) {
-    print(option.replaceAll(RegExp(regex, unicode: true), ""));
-  }
+  // for (var option in autoMessage.options) {
+  //   print(option.replaceAll(RegExp(regex, unicode: true), ""));
+  // }
   print(autoMessage.options.toString());
 }
 
@@ -499,4 +500,12 @@ void testRune() {
         "convert ${i.toString().codeUnits} to string: ${String.fromCharCodes(i.toString().codeUnits)}");
     i++;
   }
+}
+
+CustomRectangle excecuteCodeAfterReturn(CustomRectangle rectangle) {
+  CustomRectangle temp = CustomRectangle(0, 0);
+  return rectangle
+    ..left = 3
+    ..top = 4
+    ..plus();
 }
